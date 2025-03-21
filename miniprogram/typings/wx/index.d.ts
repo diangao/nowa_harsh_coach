@@ -9,7 +9,11 @@ declare namespace wx {
     success?: () => void;
     fail?: (error: any) => void;
   }): void;
-  function navigateBack(options?: { delta?: number }): void;
+  function navigateBack(options?: { 
+    delta?: number;
+    success?: () => void;
+    fail?: (error: any) => void;
+  }): void;
   function createCameraContext(): CameraContext;
   function showToast(options: { title: string; icon?: string; duration?: number }): void;
   function chooseImage(options: {
@@ -20,6 +24,11 @@ declare namespace wx {
     fail?: (error: any) => void;
   }): void;
   function switchTab(options: { 
+    url: string;
+    success?: () => void;
+    fail?: (error: any) => void;
+  }): void;
+  function reLaunch(options: { 
     url: string;
     success?: () => void;
     fail?: (error: any) => void;

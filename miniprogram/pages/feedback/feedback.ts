@@ -1,8 +1,9 @@
 /// <reference path="../../typings/index.d.ts" />
 /// <reference path="../../typings/wx/index.d.ts" />
 
-// const app = getApp<IAppOption>();
-import appInstance from '../../app';
+// 改用直接获取应用实例的方式
+const appInstance = getApp<IAppOption>();
+// import appInstance from '../../app';  // 这种方式导致undefined
 
 // Mock data service for food recognition
 class FoodRecognitionService {
@@ -141,68 +142,64 @@ Page({
   },
 
   onGotIt() {
-    console.log('User acknowledged feedback - 开始处理');
+    console.log('User acknowledged feedback - 点击了知道了按钮');
     
-    // Update ignored advice count if the user got feedback but is likely to ignore it
-    // This would be used for the "silent AI" feature in a full implementation
-    if (this.data.userOpinion === 'healthy') {
-      appInstance.globalData.ignoredAdviceCount++;
-      console.log('Ignored advice count:', appInstance.globalData.ignoredAdviceCount);
-      
-      if (appInstance.globalData.ignoredAdviceCount >= 3) {
+    try {
+      // 检查appInstance是否存在
+      if (!appInstance) {
+        console.error('App instance is undefined');
+        // 即使没有记录历史，也继续导航
         wx.showToast({
-          title: '看来你不在乎减肥，那我闭嘴。',
+          title: '无法保存记录',
           icon: 'none',
-          duration: 2000
+          duration: 1500
         });
+      } else {
+        // 添加食物历史记录
+        const historyRecord = {
+          ...this.data.foodRecord,
+          userHealthOpinion: this.data.userOpinion,
+          ignored: this.data.userOpinion === 'healthy'
+        };
         
-        // Reset counter after showing the message
-        appInstance.globalData.ignoredAdviceCount = 0;
+        // 确保globalData存在
+        if (!appInstance.globalData) {
+          appInstance.globalData = { 
+            userInfo: null, 
+            foodHistory: [], 
+            ignoredAdviceCount: 0 
+          };
+        }
+        
+        // 确保foodHistory数组存在
+        if (!appInstance.globalData.foodHistory) {
+          appInstance.globalData.foodHistory = [];
+        }
+        
+        appInstance.globalData.foodHistory.unshift(historyRecord);
+        console.log('Added to food history:', historyRecord);
+        
+        wx.showToast({
+          title: '记录已保存',
+          icon: 'success',
+          duration: 1500
+        });
       }
+    } catch (error) {
+      console.error('Error saving food record:', error);
+      wx.showToast({
+        title: '保存失败',
+        icon: 'none',
+        duration: 1500
+      });
     }
     
-    // Add to food history
-    const historyRecord = {
-      ...this.data.foodRecord,
-      userHealthOpinion: this.data.userOpinion,
-      ignored: this.data.userOpinion === 'healthy'
-    };
-    
-    appInstance.globalData.foodHistory.unshift(historyRecord);
-    console.log('Added to food history:', historyRecord);
-    
-    // 添加提示，让用户知道按钮确实被点击了
-    wx.showToast({
-      title: '处理中...',
-      icon: 'loading',
-      duration: 1000
-    });
-    
-    // 使用延时确保提示显示
+    // 延时后返回上一页
     setTimeout(() => {
-      // 使用reLaunch代替switchTab
-      wx.reLaunch({
-        url: '/pages/index/index',
-        success: () => {
-          console.log('成功跳转到首页');
-        },
-        fail: (err) => {
-          console.error('跳转到首页失败:', err);
-          
-          // 尝试navigateBack方法
-          wx.navigateBack({
-            delta: 1,
-            fail: (err2) => {
-              console.error('返回上一页也失败:', err2);
-              wx.showToast({
-                title: '返回失败，请手动返回',
-                icon: 'none',
-                duration: 2000
-              });
-            }
-          });
-        }
+      console.log('准备返回上一页');
+      wx.navigateBack({
+        delta: 1
       });
-    }, 1000); // 延时1秒
+    }, 1500);
   }
 }); 

@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="header">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <text class="title">吃不吃</text>
+    <text class="subtitle">毒舌减肥助手</text>
+  </view>
+  
+  <view class="main-button-container">
+    <button class="main-button" bindtap="onTakePhoto">
+      <image class="camera-icon" src="/images/camera.png" mode="aspectFit"></image>
+      <text>拍照识别</text>
+    </button>
+  </view>
+  
+  <view class="recent-history" wx:if="{{recentRecords.length > 0}}">
+    <view class="section-title">最近记录</view>
+    <view class="records-list">
+      <view class="record-item" wx:for="{{recentRecords}}" wx:key="id" bindtap="onViewRecord" data-id="{{item.id}}">
+        <image class="food-image" src="{{item.imageUrl}}" mode="aspectFill"></image>
+        <view class="record-info">
+          <text class="record-time">{{item.formattedTime}}</text>
+          <text class="record-feedback">{{item.feedback.sarcasticComment}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="empty-state" wx:else>
+    <text class="empty-text">还没有记录，快去拍照吧！</text>
+  </view>
+</view> 

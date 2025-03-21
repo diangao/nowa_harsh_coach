@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="camera-container" wx:if="{{!imageTaken}}">
+    <camera device-position="back" flash="auto" binderror="onCameraError" class="camera"></camera>
+    
+    <view class="camera-controls">
+      <view class="control-buttons">
+        <view class="control-button" bindtap="onCancel">
+          <text>取消</text>
+        </view>
+        
+        <view class="capture-button" bindtap="takePhoto">
+          <view class="capture-button-inner"></view>
+        </view>
+        
+        <view class="control-button" bindtap="onChooseFromAlbum">
+          <text>相册</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="preview-container" wx:if="{{imageTaken}}">
+    <image mode="aspectFit" src="{{tempImagePath}}" class="preview-image"></image>
+    
+    <view class="preview-controls">
+      <button class="preview-button cancel" bindtap="onCancelPreview">重拍</button>
+      <button class="preview-button confirm" bindtap="onConfirmPhoto">确认提交</button>
+    </view>
+  </view>
+  
+  <view class="loading-container" wx:if="{{isUploading}}">
+    <view class="loading-content">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">正在识别食物...</text>
+    </view>
+  </view>
+</view> 

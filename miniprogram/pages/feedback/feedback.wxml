@@ -1,0 +1,59 @@
+<view class="container">
+  <view class="food-image-container">
+    <image class="food-image" src="{{foodRecord.imageUrl}}" mode="aspectFill"></image>
+  </view>
+  
+  <block wx:if="{{stage === 'question'}}">
+    <view class="question-container">
+      <view class="question-title">你觉得这顿饭健康吗？</view>
+      
+      <view class="options-container">
+        <button class="option-button" bindtap="onHealthyOption">
+          <text>健康</text>
+        </button>
+        
+        <button class="option-button" bindtap="onUnhealthyOption">
+          <text>不健康</text>
+        </button>
+        
+        <button class="option-button" bindtap="onUnsureOption">
+          <text>不确定</text>
+        </button>
+      </view>
+    </view>
+  </block>
+  
+  <block wx:elif="{{stage === 'feedback'}}">
+    <view class="feedback-container">
+      <view class="user-response">
+        <text>你认为: </text>
+        <text class="user-opinion">{{userOpinionText}}</text>
+      </view>
+      
+      <view class="ai-response">
+        <text wx:if="{{userOpinion === 'healthy'}}" class="response-prefix">你确定？这也叫健康？</text>
+        <text wx:elif="{{userOpinion === 'unhealthy'}}" class="response-prefix">你自己都知道，还吃？</text>
+        <text wx:else class="response-prefix">好，那我告诉你。</text>
+      </view>
+      
+      <view class="sarcastic-comment">
+        <text class="emoji">😈</text>
+        <text class="comment-text">{{foodRecord.feedback.sarcasticComment}}</text>
+      </view>
+      
+      <view class="advice-container">
+        <view class="section-title">建议：</view>
+        <view class="advice-list">
+          <view class="advice-item" wx:for="{{foodRecord.feedback.advice}}" wx:key="index">
+            <text class="advice-marker">•</text>
+            <text class="advice-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+      
+      <button class="action-button" bindtap="onGotIt">
+        <text>知道了</text>
+      </button>
+    </view>
+  </block>
+</view> 

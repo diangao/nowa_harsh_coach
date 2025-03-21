@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="header">
+    <text class="title">饮食记录</text>
+  </view>
+  
+  <view class="records-list" wx:if="{{foodRecords.length > 0}}">
+    <view class="record-item" wx:for="{{foodRecords}}" wx:key="id" bindtap="onViewRecord" data-id="{{item.id}}">
+      <view class="record-date">{{item.date}}</view>
+      
+      <view class="record-content">
+        <image class="food-image" src="{{item.imageUrl}}" mode="aspectFill"></image>
+        
+        <view class="record-info">
+          <text class="food-name">{{item.recognitionResult.items[0].name}}</text>
+          <text class="record-time">{{item.time}}</text>
+          
+          <view class="feedback-preview">
+            <text class="feedback-text">{{item.feedback.sarcasticComment}}</text>
+          </view>
+          
+          <view class="user-opinion-tag {{item.userHealthOpinionClass}}">
+            <text>{{item.userHealthOpinionText}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="empty-state" wx:else>
+    <image class="empty-image" src="/images/empty.png" mode="aspectFit"></image>
+    <text class="empty-text">还没有饮食记录</text>
+    <button class="take-photo-button" bindtap="onTakePhoto">去拍照</button>
+  </view>
+</view> 

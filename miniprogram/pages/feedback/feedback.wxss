@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.food-image-container {
+  width: 100%;
+  height: 40vh;
+  background-color: #000;
+}
+
+.food-image {
+  width: 100%;
+  height: 100%;
+}
+
+.question-container {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 60rpx;
+  text-align: center;
+}
+
+.options-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.option-button {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  font-size: 32rpx;
+  color: #333;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.feedback-container {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-response {
+  display: flex;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.user-opinion {
+  font-weight: bold;
+  margin-left: 10rpx;
+}
+
+.ai-response {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #FF6B6B;
+  margin-bottom: 40rpx;
+}
+
+.sarcastic-comment {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.emoji {
+  font-size: 50rpx;
+  margin-right: 20rpx;
+}
+
+.comment-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+}
+
+.advice-container {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 40rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.advice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.advice-item {
+  display: flex;
+}
+
+.advice-marker {
+  color: #FF6B6B;
+  margin-right: 10rpx;
+  font-weight: bold;
+}
+
+.advice-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.action-button {
+  background-color: #FF6B6B;
+  color: white;
+  border-radius: 40rpx;
+  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+} 

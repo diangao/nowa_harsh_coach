@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+  margin-top: 40rpx;
+}
+
+.logo {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #FF6B6B;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #888;
+  margin-top: 10rpx;
+}
+
+.main-button-container {
+  width: 90%;
+  margin-bottom: 80rpx;
+}
+
+.main-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF6B6B;
+  color: white;
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 40rpx 0;
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 16rpx rgba(255, 107, 107, 0.2);
+}
+
+.camera-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 20rpx;
+}
+
+.recent-history {
+  width: 90%;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.records-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.record-item {
+  display: flex;
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.food-image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.record-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.record-time {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.record-feedback {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-top: 10rpx;
+}
+
+.empty-state {
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+} 

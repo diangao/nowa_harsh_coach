@@ -1,0 +1,10 @@
+需要添加以下图片资源:
+
+1. /images/logo.png - 应用logo图标
+2. /images/camera.png - 相机图标
+3. /images/home.png 和 /images/home_selected.png - 首页Tab图标
+4. /images/history.png 和 /images/history_selected.png - 历史记录Tab图标
+5. /images/empty.png - 空状态图标
+6. /images/mock/food1.jpg 和 /images/mock/food2.jpg - 示例食物图片
+
+请确保添加这些图片以保证应用正常显示。 

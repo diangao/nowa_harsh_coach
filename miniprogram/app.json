@@ -7,13 +7,13 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FF6B6B",
+    "navigationBarBackgroundColor": "#E74C3C",
     "navigationBarTitleText": "吃不吃",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#FF6B6B",
+    "color": "#7F8C8D",
+    "selectedColor": "#E74C3C",
     "backgroundColor": "#ffffff",
     "list": [
       {

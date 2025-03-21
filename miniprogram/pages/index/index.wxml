@@ -26,6 +26,8 @@
   </view>
   
   <view class="empty-state" wx:else>
-    <text class="empty-text">还没有记录，快去拍照吧！</text>
+    <image class="empty-illustration" src="/images/empty_plate.png" mode="aspectFit"></image>
+    <text class="empty-text">还没有记录</text>
+    <view class="harsh-tip">别浪费时间了！赶紧拍照，让我看看你今天又想吃什么垃圾食品。不要再拖延了，你的健康状况等不起！</view>
   </view>
 </view> 

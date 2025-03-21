@@ -1,0 +1,135 @@
+/**
+ * 吃不吃 - Main App Styles
+ * Theme: Direct and Harsh
+ */
+
+/* Global Variables */
+page {
+  --primary-color: #E74C3C; /* 强烈的红色 - 表达严厉态度 */
+  --primary-light: #FADBD8; /* 浅红色背景 */
+  --primary-dark: #C0392B;  /* 深红色用于强调 */
+  --accent-color: #2C3E50;  /* 深灰蓝色作为辅助色 */
+  --dark-text: #2C3E50;
+  --medium-text: #566573;
+  --light-text: #7F8C8D;
+  --bg-color: #F5F5F5;      /* 简单的浅灰色背景 */
+  --card-bg: #FFFFFF;
+  
+  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--dark-text);
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+/* Common Container */
+.container {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+/* Card Style */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  border-radius: 8rpx;
+  padding: 20rpx 40rpx;
+  box-shadow: 0 8rpx 16rpx rgba(231, 76, 60, 0.2);
+  transition: transform 0.2s;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-accent {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: bold;
+  border-radius: 8rpx;
+  padding: 20rpx 40rpx;
+  box-shadow: 0 8rpx 16rpx rgba(44, 62, 80, 0.2);
+}
+
+/* Text Styles */
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 20rpx;
+}
+
+.subtitle {
+  font-size: 30rpx;
+  color: var(--medium-text);
+  margin-bottom: 30rpx;
+}
+
+/* Harsh Comment Bubble */
+.harsh-comment {
+  position: relative;
+  background-color: var(--primary-light);
+  border-radius: 8rpx;
+  padding: 20rpx 30rpx;
+  margin: 20rpx 0;
+  font-size: 32rpx;
+  color: var(--primary-dark);
+  font-weight: 500;
+  border-left: 8rpx solid var(--primary-color);
+}
+
+/* Section Divider */
+.divider {
+  height: 2rpx;
+  background-color: #EAEAEA;
+  margin: 30rpx 0;
+  width: 100%;
+}
+
+/* Badge Styles */
+.badge {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 4rpx;
+  margin-right: 16rpx;
+}
+
+/* Empty States */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: var(--light-text);
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+} 

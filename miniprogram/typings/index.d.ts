@@ -23,14 +23,29 @@ interface FoodItem {
   healthScore: number; // 0-10, 10 being healthiest
 }
 
+// User response options
+type UserResponseType = 'curious' | 'defiant' | 'helpful';
+
 // Food record stored in history
 interface FoodRecord {
   id: string;
   imageUrl: string;
   recognitionResult: FoodRecognitionResult;
   userHealthOpinion: 'healthy' | 'unhealthy' | 'unknown';
+  userResponse?: UserResponseType;
   feedback: {
     sarcasticComment: string;
+    sarcasticOpening?: string;
+    responseOptions?: {
+      curious: string;
+      defiant: string;
+      helpful: string;
+    };
+    responseReplies?: {
+      curious: string;
+      defiant: string;
+      helpful: string;
+    };
     advice: string[];
   };
   timestamp: number;

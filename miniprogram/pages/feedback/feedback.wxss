@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f8f8f8;
+  background-color: var(--bg-color);
 }
 
 .food-image-container {
   width: 100%;
   height: 40vh;
   background-color: #000;
+  position: relative;
 }
 
 .food-image {
@@ -16,11 +17,94 @@
   height: 100%;
 }
 
+/* Opening stage styles */
+.opening-container {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  margin-top: -40rpx;
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-color);
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.ai-bubble {
+  background-color: var(--primary-light);
+  border-radius: 20rpx 20rpx 20rpx 0;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  align-self: flex-start;
+  max-width: 85%;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.ai-message {
+  font-size: 34rpx;
+  color: var(--dark-text);
+  line-height: 1.4;
+}
+
+/* Response stage styles */
+.response-container {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  margin-top: -40rpx;
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-color);
+  border-radius: 16rpx 16rpx 0 0;
+}
+
+.response-prompt {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  color: var(--dark-text);
+  text-align: center;
+}
+
+.response-button {
+  background-color: var(--card-bg);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  font-size: 32rpx;
+  color: var(--dark-text);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.response-button.curious {
+  border-left: 8rpx solid #3498db;
+}
+
+.response-button.defiant {
+  border-left: 8rpx solid #e74c3c;
+}
+
+.response-button.helpful {
+  border-left: 8rpx solid #2ecc71;
+}
+
+.response-button:active {
+  transform: scale(0.98);
+}
+
+/* Question stage styles (kept for backward compatibility) */
 .question-container {
   padding: 40rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -40rpx;
+  position: relative;
+  z-index: 1;
+  background-color: var(--bg-color);
+  border-radius: 16rpx 16rpx 0 0;
 }
 
 .question-title {
@@ -28,6 +112,7 @@
   font-weight: bold;
   margin-bottom: 60rpx;
   text-align: center;
+  color: var(--dark-text);
 }
 
 .options-container {
@@ -38,14 +123,21 @@
 }
 
 .option-button {
-  background-color: white;
-  border-radius: 16rpx;
+  background-color: var(--card-bg);
+  border-radius: 8rpx;
   padding: 30rpx;
   font-size: 32rpx;
-  color: #333;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  color: var(--dark-text);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, background-color 0.2s;
 }
 
+.option-button:active {
+  transform: scale(0.98);
+  background-color: var(--primary-light);
+}
+
+/* Feedback stage styles */
 .feedback-container {
   padding: 40rpx;
   display: flex;
@@ -56,10 +148,10 @@
   display: flex;
   margin-bottom: 20rpx;
   font-size: 28rpx;
-  color: #666;
+  color: var(--medium-text);
 }
 
-.user-opinion {
+.user-opinion, .user-response-text {
   font-weight: bold;
   margin-left: 10rpx;
 }
@@ -67,18 +159,19 @@
 .ai-response {
   font-size: 32rpx;
   font-weight: 500;
-  color: #FF6B6B;
+  color: var(--primary-color);
   margin-bottom: 40rpx;
 }
 
 .sarcastic-comment {
-  background-color: white;
-  border-radius: 16rpx;
-  padding: 30rpx;
+  background-color: var(--card-bg);
+  border-radius: 8rpx;
+  padding: 36rpx;
   display: flex;
   align-items: center;
   margin-bottom: 40rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+  border-left: 8rpx solid var(--primary-color);
 }
 
 .emoji {
@@ -89,51 +182,112 @@
 .comment-text {
   font-size: 36rpx;
   font-weight: bold;
-  color: #333;
+  color: var(--dark-text);
   flex: 1;
+  line-height: 1.4;
 }
 
 .advice-container {
-  background-color: white;
-  border-radius: 16rpx;
-  padding: 30rpx;
+  background-color: var(--card-bg);
+  border-radius: 8rpx;
+  padding: 36rpx;
   margin-bottom: 40rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
 }
 
 .section-title {
   font-size: 32rpx;
   font-weight: bold;
-  margin-bottom: 20rpx;
+  color: var(--dark-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-indicator {
+  color: var(--medium-text);
+  font-size: 24rpx;
+}
+
+.section-title::before {
+  content: "";
+  display: inline-block;
+  width: 8rpx;
+  height: 32rpx;
+  background-color: var(--accent-color);
+  margin-right: 16rpx;
+  border-radius: 0;
 }
 
 .advice-list {
   display: flex;
   flex-direction: column;
-  gap: 20rpx;
+  gap: 24rpx;
+  margin-top: 30rpx;
 }
 
 .advice-item {
   display: flex;
+  background-color: rgba(44, 62, 80, 0.05);
+  padding: 20rpx;
+  border-radius: 6rpx;
 }
 
 .advice-marker {
-  color: #FF6B6B;
-  margin-right: 10rpx;
+  color: var(--accent-color);
+  margin-right: 16rpx;
   font-weight: bold;
 }
 
 .advice-text {
   font-size: 30rpx;
-  color: #333;
+  color: var(--dark-text);
+  line-height: 1.5;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
 }
 
 .action-button {
-  background-color: #FF6B6B;
+  background-color: var(--primary-color);
   color: white;
-  border-radius: 40rpx;
-  padding: 20rpx;
+  border-radius: 8rpx;
+  padding: 24rpx;
   font-size: 32rpx;
   font-weight: bold;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
+  box-shadow: 0 8rpx 16rpx rgba(231, 76, 60, 0.2);
+  transition: transform 0.2s;
+  flex: 1;
+}
+
+.action-button.accept {
+  background-color: var(--accent-color);
+  box-shadow: 0 8rpx 16rpx rgba(46, 204, 113, 0.2);
+}
+
+.action-button.ignore {
+  background-color: var(--primary-color);
+  box-shadow: 0 8rpx 16rpx rgba(231, 76, 60, 0.2);
+}
+
+.action-button:active {
+  transform: scale(0.98);
+}
+
+.harsh-reaction {
+  margin: 40rpx 0;
+  width: 100%;
+}
+
+.harsh-comment {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-left: 8rpx solid var(--primary-color);
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: var(--primary-color);
+  border-radius: 0 8rpx 8rpx 0;
+  margin: 20rpx 0;
 } 

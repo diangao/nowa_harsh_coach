@@ -163,7 +163,7 @@ Page({
     } else {
       // If no image data, show welcome message with minimal text
       // Keep the initial message minimal to fit the sophisticated tone
-      this.addAIMessage('来让我看看你吃什么，给我看了你更有可能变瘦');
+      this.addAIMessage('让我看看你吃什么，给我看了才有可能变瘦呢~');
     }
   },
 

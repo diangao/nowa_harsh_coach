@@ -48,7 +48,7 @@
     "showES6CompileOption": false
   },
   "appid": "wxbd246a4d2ec92d15",
-  "libVersion": "2.24.1",
+  "libVersion": "3.0.2",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionRoot": "cloudfunctions/",

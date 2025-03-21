@@ -1,34 +1,13 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/camera/camera",
-    "pages/feedback/feedback",
-    "pages/history/history"
+    "pages/chat/chat",
+    "pages/camera/camera"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#E74C3C",
-    "navigationBarTitleText": "吃不吃",
+    "navigationBarTitleText": "毒舌教练",
     "navigationBarTextStyle": "white"
-  },
-  "tabBar": {
-    "color": "#7F8C8D",
-    "selectedColor": "#E74C3C",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_selected.png"
-      },
-      {
-        "pagePath": "pages/history/history",
-        "text": "记录",
-        "iconPath": "images/history.png",
-        "selectedIconPath": "images/history_selected.png"
-      }
-    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

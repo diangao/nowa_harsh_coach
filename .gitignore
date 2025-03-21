@@ -1,0 +1,48 @@
+# General
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.tmp
+*.swp
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+thumbs.db
+desktop.ini
+
+# WeChat Mini Program specific
+miniprogram_npm/
+node_modules/
+coverage/
+
+# MiniProgram build artifacts
+miniprogram/miniprogram_npm/
+
+# Environment and configuration
+miniprogram/utils/config.ts
+
+# Project configuration (optional)
+project.private.config.json
+
+# TypeScript
+*.tsbuildinfo
+*.js.map
+
+# Build folders
+dist/
+build/
+
+# Test coverage
+coverage/
+
+# Temporary files
+.temp/
+.rn_temp/
+
+# Local development
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local 

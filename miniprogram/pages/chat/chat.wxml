@@ -1,0 +1,107 @@
+<view class="app-container">
+  <!-- Minimalist header -->
+  <view class="header">
+    <text class="title">Nowy</text>
+    <view class="camera-btn" bindtap="onOpenCamera">
+      <image src="/images/camera_icon.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- Content area with minimal design -->
+  <scroll-view class="content-area" scroll-y="{{true}}" scroll-into-view="{{scrollToView}}" scroll-with-animation="{{true}}">
+    <!-- Welcome screen - simple, minimal -->
+    <view class="welcome-screen" wx:if="{{messages.length === 0}}">
+      <view class="welcome-content">
+        <image class="logo" src="/images/coach_avatar.png" mode="aspectFit"></image>
+        <view class="camera-trigger" bindtap="onOpenCamera">
+          <text>拍照评估你的食物</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- Interaction elements -->
+    <block wx:for="{{messages}}" wx:key="id">
+      <!-- Food image -->
+      <view wx:if="{{item.sender === 'user' && item.type === 'image'}}" class="photo-item" id="msg-{{item.id}}">
+        <image class="food-photo" src="{{item.imageUrl}}" mode="aspectFill" bindtap="previewImage" data-url="{{item.imageUrl}}"></image>
+      </view>
+      
+      <!-- User response -->
+      <view wx:elif="{{item.sender === 'user' && item.type === 'text'}}" class="user-item" id="msg-{{item.id}}">
+        <text>{{item.content}}</text>
+      </view>
+      
+      <!-- Coach response -->
+      <view wx:elif="{{item.sender === 'ai'}}" class="coach-item" id="msg-{{item.id}}">
+        <text class="coach-text">{{item.content}}</text>
+        
+        <!-- Response choices -->
+        <view class="response-choices" wx:if="{{item.responseOptions && item.responseOptions.length > 0}}">
+          <view 
+            wx:for="{{item.responseOptions}}" 
+            wx:for-item="option" 
+            wx:key="id" 
+            class="choice-btn {{option.id}}" 
+            bindtap="onSelectResponse" 
+            data-option-id="{{option.id}}"
+            data-option-text="{{option.text}}">
+            {{option.text}}
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <!-- Typing indicator - minimalist -->
+    <view class="typing" wx:if="{{isTyping}}">
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+    </view>
+  </scroll-view>
+
+  <!-- Floating camera button -->
+  <view class="floating-camera" bindtap="onOpenCamera" wx:if="{{messages.length > 0}}">
+    <image src="/images/camera_icon.png" mode="aspectFit"></image>
+  </view>
+
+  <!-- Camera view -->
+  <view class="camera-view {{showCamera ? 'visible' : ''}}" catchtap="onCameraOverlayClick">
+    <view class="camera-content" catchtap="stopPropagation">
+      <camera device-position="back" flash="auto" binderror="onCameraError" class="camera" wx:if="{{showCamera}}"></camera>
+      
+      <view class="camera-actions">
+        <view class="action-btn cancel" bindtap="onCloseCamera">
+          <text>取消</text>
+        </view>
+        
+        <view class="capture-btn" bindtap="takePhoto">
+          <view class="inner-circle"></view>
+        </view>
+        
+        <view class="action-btn gallery" bindtap="onChooseFromAlbum">
+          <text>相册</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Photo preview -->
+  <view class="preview-view {{showPreview ? 'visible' : ''}}" catchtap="onPreviewOverlayClick">
+    <view class="preview-content" catchtap="stopPropagation">
+      <image mode="aspectFit" src="{{tempImagePath}}" class="preview-img"></image>
+      
+      <view class="preview-actions">
+        <view class="action-btn retake" bindtap="onCancelPreview">重拍</view>
+        <view class="action-btn submit" bindtap="onConfirmPhoto">提交</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Loading state -->
+  <view class="loading-view {{isUploading ? 'visible' : ''}}">
+    <view class="loading-content">
+      <view class="spinner"></view>
+      <text class="loading-text">分析中...</text>
+    </view>
+  </view>
+</view> 

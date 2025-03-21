@@ -5,9 +5,7 @@
 // @ts-ignore
 const appInstance = App<IAppOption>({
   globalData: {
-    userInfo: null,
-    foodHistory: [],
-    ignoredAdviceCount: 0
+    userInfo: null
   },
   onLaunch() {
     console.log('App launched');

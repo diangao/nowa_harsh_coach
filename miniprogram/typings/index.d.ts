@@ -62,4 +62,28 @@ type FoodCategory =
   | 'vegetables' 
   | 'fruits' 
   | 'processed' 
-  | 'other'; 
+  | 'other';
+
+// Define custom types for our project
+interface FormatTimeFunction {
+  (date: Date): string;
+}
+
+interface GenerateUniqueIdFunction {
+  (): string;
+}
+
+// Declare the global namespace for utility functions
+declare namespace Util {
+  export const formatTime: FormatTimeFunction;
+  export const generateUniqueId: GenerateUniqueIdFunction;
+}
+
+// Extend wx types if needed
+interface WxPreviewImage {
+  urls: string[];
+  current?: string;
+  success?: (res: any) => void;
+  fail?: (err: any) => void;
+  complete?: (res: any) => void;
+} 

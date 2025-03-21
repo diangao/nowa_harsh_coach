@@ -2,12 +2,16 @@
   <view class="camera-container" wx:if="{{!imageTaken}}">
     <camera device-position="back" flash="auto" binderror="onCameraError" class="camera"></camera>
     
-    <view class="camera-controls">
+    <view class="camera-intro" wx:if="{{showIntro}}">
+      <view class="intro-content">
+        <text class="intro-title">毒舌教练</text>
+        <text class="intro-desc">拍下你的食物，看看我会怎么"嘲讽"你</text>
+        <button class="intro-button" bindtap="dismissIntro">开始拍照</button>
+      </view>
+    </view>
+    
+    <view class="camera-controls" wx:if="{{!showIntro}}">
       <view class="control-buttons">
-        <view class="control-button" bindtap="onCancel">
-          <text>取消</text>
-        </view>
-        
         <view class="capture-button" bindtap="takePhoto">
           <view class="capture-button-inner"></view>
         </view>
@@ -24,14 +28,14 @@
     
     <view class="preview-controls">
       <button class="preview-button cancel" bindtap="onCancelPreview">重拍</button>
-      <button class="preview-button confirm" bindtap="onConfirmPhoto">确认提交</button>
+      <button class="preview-button confirm" bindtap="onConfirmPhoto">提交</button>
     </view>
   </view>
   
   <view class="loading-container" wx:if="{{isUploading}}">
     <view class="loading-content">
       <view class="loading-spinner"></view>
-      <text class="loading-text">正在识别食物...</text>
+      <text class="loading-text">AI正在分析食物...</text>
     </view>
   </view>
 </view> 

@@ -57,5 +57,8 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "requestDomains": [
+    "api.deepseek.com"
+  ]
 }

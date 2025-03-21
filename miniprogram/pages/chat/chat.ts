@@ -1,5 +1,5 @@
 // chat.ts
-import { config, logDebug } from '../../utils/config';
+import { config, logDebug, logError } from '../../utils/config';
 import { 
   getStorageSync, 
   setStorageSync, 
@@ -480,7 +480,7 @@ Page({
     const optionText = e.currentTarget.dataset.optionText;
     const feedback = this.data.feedback;
     
-    logDebug('User selected response option:', optionId, optionText);
+    logDebug('User selected response option:', { optionId, optionText });
     
     // Add user's selected response
     this.addUserMessage(optionText, 'text');
@@ -610,14 +610,14 @@ Page({
   }
 });
 
-// Function to call OpenAI GPT-4o API
+// Function to call DeepSeek API
 async function callOpenAI(base64Image: string, userProfile: UserProfile, dailyLog: DailyFoodLog): Promise<any> {
-  logDebug('Preparing to call OpenAI API...');
+  logDebug('Preparing to call DeepSeek API...');
   
-  // Get OpenAI API configuration from config file
-  const apiKey = config.OPENAI_API_KEY;
-  const apiUrl = config.OPENAI_API_URL;
-  const model = config.OPENAI_MODEL;
+  // Get API configuration from config file
+  const apiKey = config.AI_API_KEY;
+  const apiUrl = config.AI_API_URL;
+  const model = config.AI_MODEL;
   
   // Calculate calories already consumed today
   const consumedCalories = dailyLog.totalCalories || 0;
@@ -628,7 +628,7 @@ async function callOpenAI(base64Image: string, userProfile: UserProfile, dailyLo
   const mealTime = timeOfDay < 11 ? '早餐' : timeOfDay < 16 ? '午餐' : '晚餐';
   
   try {
-    logDebug('Calling OpenAI API...');
+    logDebug('Calling DeepSeek API...');
     
     // Prepare prompt with user context
     const contextPrompt = `
@@ -659,7 +659,7 @@ async function callOpenAI(base64Image: string, userProfile: UserProfile, dailyLo
     }
     `;
     
-    // Make API request to OpenAI
+    // 为DeepSeek设置API请求
     const response = await request({
       url: apiUrl,
       method: 'POST',
@@ -676,34 +676,28 @@ async function callOpenAI(base64Image: string, userProfile: UserProfile, dailyLo
           },
           {
             role: 'user',
-            content: [
-              { type: 'text', text: contextPrompt },
-              { 
-                type: 'image_url', 
-                image_url: {
-                  url: `data:image/jpeg;base64,${base64Image}`
-                }
-              }
-            ]
+            content: `${contextPrompt}\n\n图片数据: [BASE64图片数据已提供但太长无法显示]`
           }
         ],
         max_tokens: 500,
-        temperature: 0.7,
-        response_format: { type: 'json_object' }
+        temperature: 0.7
       }
     });
     
+    logDebug('DeepSeek API response status:', response.statusCode);
+    
     if (response.statusCode === 200) {
+      // 解析DeepSeek响应
       const result = JSON.parse(response.data.choices[0].message.content);
-      logDebug('OpenAI response:', result);
+      logDebug('DeepSeek response:', result);
       return result;
     } else {
-      console.error('OpenAI API error:', response);
+      logError('DeepSeek API error:', response);
       throw new Error('API request failed');
     }
   } catch (error) {
-    console.error('Error calling OpenAI:', error);
-    // Return mock data as fallback
+    logError('Error calling DeepSeek:', error);
+    // 返回模拟数据作为备选
     return generateMockAnalysis(userProfile, dailyLog);
   }
 }

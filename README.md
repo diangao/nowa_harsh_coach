@@ -1,35 +1,54 @@
-# 吃不吃 (Eat or Not) - 毒舌减肥助手
+# React + TypeScript + Vite
 
-一款基于 AI 食物识别的毒舌风格减肥助手小程序，帮助用户在日常饮食中做出更健康的选择。
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 核心功能
+Currently, two official plugins are available:
 
-1. **拍照识别**：拍摄或上传食物照片，AI 识别食物种类
-2. **毒舌反馈**：根据用户对食物健康度的判断，给出直白、毒舌式的反馈
-3. **行动建议**：提供具体、可执行的饮食建议，不是模棱两可的"适量吃"，而是"只吃三口"
-4. **饮食记录**：记录用户的饮食历史，便于回顾和管理
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 技术栈
+## Expanding the ESLint configuration
 
-- 微信小程序（TypeScript）
-- 云开发（数据存储与云函数）
-- 多模态 AI 服务（食物识别 API）
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## 项目特色
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-- 不展示卡路里数值，而是直接给出行动建议
-- 毒舌风格反馈，增加趣味性
-- "沉默的 AI"机制：如果用户连续忽视建议，AI 会发出冷嘲热讽
-- 自动检测"挑战规则"：如晚上 8 点后上传食物，触发"夜宵警告"
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## 部署说明
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-1. 在微信开发者工具中导入项目
-2. 替换 `project.config.json` 中的 appid
-3. 在云开发控制台创建环境，并替换 `app.ts` 中的环境 ID
-4. 上传云函数并部署
-
-## 未来计划
-
-- 接入真实的食物识别 API（如 Gemini 或 GPT-4）
-- 完善用户画像，提供更个性化的建议
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
